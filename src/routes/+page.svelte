@@ -1,2 +1,16 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+import { onMount } from "svelte";
+
+let out = {};
+async function doFetch() {
+  return await fetch("/api/route1").then((response) => response.json());
+}
+
+onMount(async () => {
+  await doFetch().then((data) => {
+    out = data;
+  });
+});
+</script>
+
+Result: {JSON.stringify(out)}
